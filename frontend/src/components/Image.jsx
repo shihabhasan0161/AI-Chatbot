@@ -2,12 +2,21 @@ import { useState } from "react";
 import { toast } from "react-hot-toast";
 import { config, endpoint } from "../utils/config.js";
 
-const Image = () => {
+const Image = ({ apiKey }) => {
   const [prompt, setPrompt] = useState("");
-  const [apiKey, setApiKey] = useState("");
   const [imageUrl, setImageUrl] = useState([]);
 
   const handleImageGeneration = async () => {
+    if (!prompt) {
+      toast.error("Please enter a prompt.");
+      return;
+    }
+
+    if (!apiKey) {
+      toast.error("Please set your OpenAI API key first.");
+      return;
+    }
+
     try {
       const res = await config.post(endpoint.IMAGE, { prompt, apiKey });
       setImageUrl(res.data);
@@ -19,15 +28,6 @@ const Image = () => {
 
   return (
     <div className="image-container">
-      <div className="api-key-input">
-        <p>We don't store your API key. It is saved in local storage.</p>
-        <input
-          type="text"
-          value={apiKey}
-          onChange={(e) => setApiKey(e.target.value)}
-          placeholder="Enter your OpenAI API Key"
-        />
-      </div>
       <h1>Generate Image</h1>
       <input
         className="image-input"
