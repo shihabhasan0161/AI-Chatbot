@@ -80,4 +80,9 @@ frontend/  # React
 - [LEARN.md](LEARN.md) — deep-dive into architecture and extension ideas.
 - [CONTRIBUTING.md](CONTRIBUTING.md) — workflow for issues, branches, and reviews.
 
+  MIT License
+
+## License
+MIT License - feel free to use this project for learning and development.
+
 Happy hacking!
