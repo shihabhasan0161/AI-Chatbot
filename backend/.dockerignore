@@ -1,0 +1,12 @@
+# Ignore build output
+target/
+# Ignore Git data
+.git
+.gitignore
+# Ignore IDE settings
+.idea/
+.vscode/
+# Ignore local OS files
+*.log
+*.env
+.DS_Store
