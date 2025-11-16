@@ -1,0 +1,39 @@
+:root[data-theme="light"] {
+  --bg-color: #f5f5f5;
+  --text-color: #333;
+  --border-color: #e0e0e0;
+  --component-bg: #ffffff;
+  --sidebar-bg: #fafafa;
+  --input-bg: #ffffff;
+  --button-bg: #333;
+  --button-text: #ffffff;
+  --user-message-bg: #e5e5ea;
+  --bot-message-bg: #ffffff;
+  --tab-active-border: #333;
+  --icon-color: #b0b0b0;
+  --icon-hover-color: #666;
+  --box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  --modal-bg: #fff;
+  --modal-overlay: rgba(0, 0, 0, 0.35);
+  --modal-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+:root[data-theme="dark"] {
+  --bg-color: #1a1a1a;
+  --text-color: #e0e0e0;
+  --border-color: #3a3a3a;
+  --component-bg: #2a2a2a;
+  --sidebar-bg: #222222;
+  --input-bg: #3a3a3a;
+  --button-bg: #e0e0e0;
+  --button-text: #1a1a1a;
+  --user-message-bg: #007bff;
+  --bot-message-bg: #3a3a3a;
+  --tab-active-border: #e0e0e0;
+  --icon-color: #666;
+  --icon-hover-color: #b0b0b0;
+  --box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  --modal-bg: #2a2a2a;
+  --modal-overlay: rgba(0, 0, 0, 0.5);
+  --modal-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+}

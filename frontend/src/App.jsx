@@ -2,6 +2,7 @@ import Chat from "./components/Chat";
 import Image from "./components/Image";
 import { useEffect, useState } from "react";
 import { Toaster } from "react-hot-toast";
+import { useTheme } from "./contexts/ThemeContext";
 import "./App.css";
 
 const App = () => {
@@ -11,6 +12,7 @@ const App = () => {
   });
   const [showApiModal, setShowApiModal] = useState(false);
   const [tempApiKey, setTempApiKey] = useState(apiKey);
+  const { theme, toggleTheme } = useTheme();
 
   const handleTabChange = (tab) => {
     setActiveTab(tab);
@@ -44,9 +46,14 @@ const App = () => {
       <div className="app-container">
         <div className="app-header">
           <h1 className="app-title">ChatBot</h1>
-          <button className="api-key-button" onClick={openApiModal}>
-            {apiKey ? "Update API Key" : "Set API Key"}
-          </button>
+          <div className="header-actions">
+            <button className="api-key-button" onClick={openApiModal}>
+              {apiKey ? "Update API Key" : "Set API Key"}
+            </button>
+            <button className="theme-toggle-button" onClick={toggleTheme}>
+              {theme === 'light' ? '🌙' : '☀️'}
+            </button>
+          </div>
         </div>
 
         <div className="tabs-container">
