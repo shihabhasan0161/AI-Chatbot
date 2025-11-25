@@ -13,8 +13,17 @@ import java.util.Map;
 @RequiredArgsConstructor
 public class ChatService {
     private final ChatModel chatModel;
+    private final GeminiService geminiService;
 
-    public String generateResponse(String prompt, String apiKey) {
+    public String generateResponse(String prompt, String apiKey, String provider, String model) {
+        if ("gemini".equalsIgnoreCase(provider)){
+            return geminiService.generateResponse(prompt, apiKey, model);
+        } else {
+            return generateOpenAIResponse(prompt, apiKey);
+        }
+    }
+
+    public String generateOpenAIResponse(String prompt, String apiKey) {
         OpenAiChatOptions options = OpenAiChatOptions.builder()
                 .httpHeaders(Map.of("Authorization", "Bearer " + apiKey))
                 .build();

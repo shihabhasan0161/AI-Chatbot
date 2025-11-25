@@ -24,7 +24,7 @@ const App = () => {
 
   const modelOptions = {
     openai: ["gpt-4o", "gpt-4", "gpt-3.5-turbo"],
-    gemini: ["gemini-pro", "gemini-1.5-pro"]
+    gemini: ["gemini-2.5-flash", "gemini-2.5-pro"]
   };
 
   const handleTabChange = (tab) => {
@@ -40,11 +40,19 @@ const App = () => {
   }, [apiKey]);
 
   useEffect(() => {
+    if (provider) {
     localStorage.setItem("provider", provider);
+    } else {
+      localStorage.removeItem("provider");
+    }
   }, [provider]);
 
   useEffect(() => {
-    localStorage.setItem("model", model);
+    if (model) {
+      localStorage.setItem("model", model);
+    } else {
+      localStorage.removeItem("model");
+    }
   }, [model]);
 
   const openApiModal = () => {

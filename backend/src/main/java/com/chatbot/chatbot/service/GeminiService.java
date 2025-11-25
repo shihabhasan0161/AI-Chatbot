@@ -20,7 +20,7 @@ public class GeminiService {
 
     public String generateResponse(String prompt, String apiKey, String model) {
         try {
-            String modelName = model != null ? model : "gemini-pro";
+            String modelName = model != null ? model : "gemini-2.5-flash";
             
             // Prepare the request body
             String requestBody = String.format(

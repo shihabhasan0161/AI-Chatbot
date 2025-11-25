@@ -30,7 +30,7 @@ public class ChatController {
             );
         } else {
             // Default to OpenAI
-            return chatService.generateResponse(
+            return chatService.generateOpenAIResponse(
                     request.getPrompt(),
                     request.getApiKey()
             );

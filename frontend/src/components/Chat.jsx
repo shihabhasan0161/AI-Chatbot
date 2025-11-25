@@ -1,7 +1,5 @@
-// --- Markdown rendering support ---
-
-import ReactMarkdown from 'react-markdown';
-import remarkGfm from 'remark-gfm';
+import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
 
 import {
   useState,
@@ -159,11 +157,11 @@ const Chat = ({ apiKey, provider, model }) => {
     setPrompt("");
 
     try {
-      const response = await config.post(endpoint.CHAT, { 
-        prompt, 
+      const response = await config.post(endpoint.CHAT, {
+        prompt,
         apiKey,
         provider: provider || "openai",
-        model: model || "gpt-4o"
+        model: model === "gpt-4o" ? "gemini-2.5-flash" : model,
       });
       const data = response.data;
       const botMessage = { text: data, sender: "bot" };
@@ -238,16 +236,16 @@ const Chat = ({ apiKey, provider, model }) => {
         </div>
 
         <div className="message-list">
-            {messages.map((msg, index) => (
-                <div key={index} className={`message ${msg.sender}`}>
-                    <ReactMarkdown remarkPlugins={[remarkGfm]}>
-                        {msg.text}
-                    </ReactMarkdown>
-                </div>
-            ))}
-            <div ref={messagesEndRef} />
+          {messages.map((msg, index) => (
+            <div key={index} className={`message ${msg.sender}`}>
+              <ReactMarkdown remarkPlugins={[remarkGfm]}>
+                {msg.text}
+              </ReactMarkdown>
             </div>
-
+          ))}
+          <div ref={messagesEndRef} />
+        </div>
+        
         <div className="chat-input-area">
           <input
             type="text"
