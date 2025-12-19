@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="./frontend/public/logo.svg" alt="Chatbot Logo" style="width:25%; max-width:100px;" />
+  <img src="./frontend/public/logo.png" alt="Chatbot Logo" style="width:25%; max-width:100px;" />
 </p>
 
 # React Spring Chatbot
