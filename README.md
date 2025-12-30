@@ -6,6 +6,12 @@
 
 A full-stack, open-source chatbot application that combines the power of **Spring AI** (backend) with **React** (frontend) to deliver intelligent chat completions and AI-powered image generation in a seamless, user-friendly experience.
 
+<img width="1330" height="882" alt="chatbot_1" src="https://github.com/user-attachments/assets/4f19c0ab-7409-42a2-901b-b592b54cff9b" />
+
+<img width="1263" height="861" alt="chatbot_2" src="https://github.com/user-attachments/assets/4c6c4a23-b03c-4d6a-802e-e552d91c18a5" />
+
+
+
 ## 🎯 Project Purpose
 
 This project demonstrates a modern full-stack architecture for building AI-powered applications. It serves as:
