@@ -340,6 +340,29 @@ body {
   border-color: var(--primary-color);
 }
 
+.add-file-btn {
+  height: 40px;
+  width: 40px;
+
+  border-radius: 50%;
+  border: 1px solid var(--border-color);
+
+  background-color: var(--button-bg);
+  color: var(--icon-color);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 22px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.add-file-btn:hover {
+  background-color: var(--input-bg);
+}
+
 .send-button {
   background-color: var(--button-bg);
   color: var(--button-text);

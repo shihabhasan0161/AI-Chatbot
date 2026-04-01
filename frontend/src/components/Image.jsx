@@ -13,7 +13,7 @@ const Image = ({ apiKey }) => {
     }
 
     if (!apiKey) {
-      toast.error("Please set your OpenAI API key first.");
+      toast.error("Please set your API key first.");
       return;
     }
 

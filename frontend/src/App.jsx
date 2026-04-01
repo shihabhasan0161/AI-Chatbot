@@ -96,6 +96,7 @@ const App = () => {
 
   return (
     <>
+    <div className={`app ${theme}`}>
       <div className="app-container">
         <div className="app-header">
           <div className="app-logo">
@@ -188,6 +189,7 @@ const App = () => {
           </div>
         </div>
       )}
+    </div>
     </>
   );
 };

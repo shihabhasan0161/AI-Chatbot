@@ -25,8 +25,10 @@ const Chat = ({ apiKey, provider, model }) => {
     }
     return [{ text: "Hello! How can I help you today?", sender: "bot" }];
   });
-
   const messagesEndRef = useRef(null);
+
+  const [selectedFile, setSelectedFile] = useState(null);
+  const fileInputRef = useRef(null);
 
   // handle responsive sidebar
   useLayoutEffect(() => {
@@ -61,7 +63,7 @@ const Chat = ({ apiKey, provider, model }) => {
       } catch (error) {
         console.error(
           "Failed to parse previous chats from localStorage:",
-          error
+          error,
         );
       }
     }
@@ -132,6 +134,20 @@ const Chat = ({ apiKey, provider, model }) => {
     setShowSidebar((prev) => !prev);
   }, []);
 
+  // handle file change and upload to backend
+  const onFileChange = (e) => {
+    const file = e.target.files[0];
+    if (!file) {
+      toast.error("No file selected.");
+      return;
+    }
+    setSelectedFile(file);
+    const formData = new FormData();
+    formData.append("file", file);
+    console.log("Selected File: ", file.name);
+    // config.post(endpoint.FILE_UPLOAD, formData); // to be implemented with backend, with file as prompt, apikey etc.
+  }
+
   const handleSend = async (e) => {
     e.preventDefault();
     if (!prompt.trim()) {
@@ -140,7 +156,7 @@ const Chat = ({ apiKey, provider, model }) => {
     }
 
     if (!apiKey) {
-      toast.error("Please set your OpenAI API key first.");
+      toast.error("Please set your API key first.");
       return;
     }
 
@@ -188,41 +204,41 @@ const Chat = ({ apiKey, provider, model }) => {
     <div className="chat-wrapper">
       {/* Sidebar */}
       <Activity mode={showSidebar ? "visible" : "hidden"}>
-      <aside className="chat-sidebar">
-        <div className="chat-sidebar-header">
-          <span className="sidebar-title">History</span>
-          <button className="sidebar-new-chat-btn" onClick={createNewChat}>
-            + New Chat
-          </button>
-        </div>
-        <div className="chat-history-list">
-          {previousChats.map((chat) => (
-            <div
-              key={chat.title}
-              className={`chat-history-row ${
-                currentTitle === chat.title ? "active" : ""
-              }`}
-            >
-              <button
-                className="chat-history-item"
-                onClick={() => loadPreviousChat(chat.title)}
+        <aside className="chat-sidebar">
+          <div className="chat-sidebar-header">
+            <span className="sidebar-title">History</span>
+            <button className="sidebar-new-chat-btn" onClick={createNewChat}>
+              + New Chat
+            </button>
+          </div>
+          <div className="chat-history-list">
+            {previousChats.map((chat) => (
+              <div
+                key={chat.title}
+                className={`chat-history-row ${
+                  currentTitle === chat.title ? "active" : ""
+                }`}
               >
-                {chat.title}
-              </button>
-              <button
-                className="chat-delete-icon"
-                onClick={(e) => {
-                  e.stopPropagation();
-                  deleteChat(chat.title);
-                }}
-                aria-label="Delete chat"
-              >
-                <MdDelete />
-              </button>
-            </div>
-          ))}
-        </div>
-      </aside>
+                <button
+                  className="chat-history-item"
+                  onClick={() => loadPreviousChat(chat.title)}
+                >
+                  {chat.title}
+                </button>
+                <button
+                  className="chat-delete-icon"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    deleteChat(chat.title);
+                  }}
+                  aria-label="Delete chat"
+                >
+                  <MdDelete />
+                </button>
+              </div>
+            ))}
+          </div>
+        </aside>
       </Activity>
 
       {/* Main chat */}
@@ -246,7 +262,7 @@ const Chat = ({ apiKey, provider, model }) => {
           ))}
           <div ref={messagesEndRef} />
         </div>
-        
+
         <div className="chat-input-area">
           <input
             type="text"
@@ -255,6 +271,17 @@ const Chat = ({ apiKey, provider, model }) => {
             onKeyDown={handleKeyPress}
             placeholder="Type your message here..."
           />
+          <div className="file-upload-wrapper">
+            <input
+              type="file"
+              ref={fileInputRef}
+              onChange={onFileChange}
+              style={{ display: "none" }}
+            />
+            <button className="add-file-btn" onClick={() => fileInputRef.current.click()} title="Upload file">
+              +
+            </button>
+          </div>
           <button className="send-button" onClick={handleSend}>
             Send
           </button>

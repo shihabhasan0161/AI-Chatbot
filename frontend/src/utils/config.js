@@ -10,6 +10,7 @@ const config = axios.create({
 const endpoint = {
     CHAT: "/chat",
     IMAGE: "/generate-image",
+    FILE_UPLOAD: "/upload-file", // to be implemented in backend
 };
 
 export {config, endpoint};
